@@ -14,7 +14,7 @@
         android:text="Hello World!" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/wpisz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -22,12 +22,13 @@
         android:text="Name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/guzik"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
 
     <ListView
+        android:id="@+id/lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>

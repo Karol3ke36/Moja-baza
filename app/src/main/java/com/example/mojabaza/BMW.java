@@ -12,9 +12,9 @@ public class BMW {
     private String Typ;
     @ColumnInfo(name = "rok")
     private int rokProdukcji;
-    private Integer moc;
+    private int moc;
 
-    public BMW(int id, String model, String typ, int rokProdukcji, Integer moc) {
+    public BMW(int id, String model, String typ, int rokProdukcji, int moc) {
         this.id = id;
         Model = model;
         Typ = typ;
@@ -58,7 +58,7 @@ public class BMW {
         return moc;
     }
 
-    public void setMoc(Integer moc) {
+    public void setMoc(int moc) {
         this.moc = moc;
     }
 
