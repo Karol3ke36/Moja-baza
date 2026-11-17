@@ -54,8 +54,15 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, modele);
         listView.setAdapter(arrayAdapter);
 
-
-
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
+                bmwDataBase.zwrocAutaDAO().usunZBazy(arrayAdapter.getItem(i));
+                modele.remove(i);
+                arrayAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
 
         guzik.setOnClickListener(new View.OnClickListener() {
             @Override
