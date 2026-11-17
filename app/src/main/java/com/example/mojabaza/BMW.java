@@ -14,8 +14,8 @@ public class BMW {
     private int rokProdukcji;
     private int moc;
 
-    public BMW(int id, String model, String typ, int rokProdukcji, int moc) {
-        this.id = id;
+    public BMW(String model, String typ, int rokProdukcji, int moc) {
+
         Model = model;
         Typ = typ;
         this.rokProdukcji = rokProdukcji;
@@ -67,12 +67,10 @@ public class BMW {
 
     @Override
     public String toString() {
-        return "BMW{" +
-                "id=" + id +
-                ", Model='" + Model + '\'' +
-                ", Typ='" + Typ + '\'' +
-                ", rokProdukcji=" + rokProdukcji +
-                ", moc=" + moc +
-                '}';
+        return "BMW:" +
+                " Model = " + Model +
+                ", Typ = " + Typ +
+                ", Rok Produkcji = " + rokProdukcji +
+                ", Moc = " + moc;
     }
 }

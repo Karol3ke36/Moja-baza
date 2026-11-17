@@ -1,6 +1,8 @@
 package com.example.mojabaza;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
     BMWDataBase bmwDataBase;
     Button guzik;
     ListView lista;
-    EditText wpisz;
+    EditText model, typ, rokprod, moc;
     ArrayAdapter<BMW> arrayAdapter;
     List<BMW> modele;
-
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,31 @@ public class MainActivity extends AppCompatActivity {
                 getApplicationContext(),
                 BMWDataBase.class,
                 "salon_db"
-        ).allowMainThreadQueries().build();
-        bmwDataBase.zwrocAutaDAO().wstawDoBazy(
-                new BMW(1, "e36", "coupe", 1994, 140)
-        );
+        ).allowMainThreadQueries()
+                .fallbackToDestructiveMigration().build();
+        guzik = findViewById(R.id.guzik);
+        lista = findViewById(R.id.lista);
+        model = findViewById(R.id.model);
+        moc = findViewById(R.id.moc);
+        typ = findViewById(R.id.typ);
+        rokprod = findViewById(R.id.rokprod);
+
+        listView = findViewById(R.id.lista);
+        modele = bmwDataBase.zwrocAutaDAO().zwrocWszystkieAutaZBazy();
+        arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, modele);
+        listView.setAdapter(arrayAdapter);
+
+
+
+
+        guzik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BMW bmw = new BMW(model.getText().toString(),typ.getText().toString(),Integer.parseInt(rokprod.getText().toString()),Integer.parseInt(moc.getText().toString()));
+                bmwDataBase.zwrocAutaDAO().wstawDoBazy(bmw);
+                modele.add(bmw);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
